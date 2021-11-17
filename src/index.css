@@ -7,7 +7,45 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {margin: 0; padding: 0; height: 100%; overflow: hidden}
+
+ul{
+  padding: 0;
+  margin: 0;
+}
+
+li{
+  list-style-type:none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.float-fullscreen, .float-info{
+	position:fixed;
+	width:50px;
+	height:50px;
+	bottom:40px;
+	right:40px;
+	background-color:rgb(255, 255, 255);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+  z-index: 9999;
+}
+
+.float-info{
+  bottom:100px;
+}
+
+.float-info img, .float-fullscreen img{
+  height: 28px;
+  margin-top: 10px;
+}
+
+.float-info img{
+  height: 30px;
 }
