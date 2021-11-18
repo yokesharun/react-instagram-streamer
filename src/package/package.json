@@ -15,10 +15,6 @@
   ],
   "author": "Arun Yokesh",
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
