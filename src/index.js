@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import InstagramStreamer from './InstagramStreamer';
+import InstagramStreamer from './package/src/InstagramStreamer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <InstagramStreamer />
+    <InstagramStreamer accessToken="" />
   </React.StrictMode>,
   document.getElementById('root')
 );
