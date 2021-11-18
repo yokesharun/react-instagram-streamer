@@ -1,8 +1,9 @@
 {
   "name": "react-instagram-streamer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "This will help to stream instagram photos in your laptops on special occasions. Developed as a react package.",
   "main": "dist/index.cjs.js",
+  "homepage": "https://github.com/yokesharun/react-instagram-streamer",
   "scripts": {
     "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,6 +29,9 @@
     "rollup-plugin-styles": "^3.14.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3"
+    "@babel/runtime": "^7.16.3",
+    "react-full-screen": "^1.1.0",
+    "react-lodash": "^0.1.2",
+    "react-stonecutter": "^0.3.10"
   }
 }

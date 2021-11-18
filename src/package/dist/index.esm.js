@@ -1,7 +1,7 @@
 import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
 import React, { useState, useEffect } from 'react';
-import { string } from 'prop-types';
-import { CSSGrid, layout } from 'react-stonecutter';
+import { string, number, bool } from 'prop-types';
+import { makeResponsive, measureItems, CSSGrid, layout } from 'react-stonecutter';
 import _ from 'lodash';
 import { useFullScreenHandle, FullScreen } from 'react-full-screen';
 
@@ -9,9 +9,24 @@ const img$1 = require('./full-screen.png');
 
 const img = require('./info.png');
 
+var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
+
+var css = "ul{\n  padding: 0;\n  margin: 0;\n}\n\nli{\n  list-style-type:none;\n}\n\n.float-fullscreen, .float-info{\n\tposition:fixed;\n\twidth:50px;\n\theight:50px;\n\tbottom:40px;\n\tright:40px;\n\tbackground-color:rgb(255, 255, 255);\n\tcolor:#FFF;\n\tborder-radius:50px;\n\ttext-align:center;\n\tbox-shadow: 2px 2px 3px #999;\n  z-index: 9999;\n}\n\n.float-info{\n  bottom:100px;\n}\n\n.float-info img, .float-fullscreen img{\n  height: 28px;\n  margin-top: 10px;\n}\n\n.float-info img{\n  height: 30px;\n}\n\n.photo-container{\n  width: inherit;\n}";
+n(css,{});
+
 var InstagramStreamer = function InstagramStreamer(props) {
   var _props$accessToken = props.accessToken,
-      accessToken = _props$accessToken === void 0 ? '' : _props$accessToken;
+      accessToken = _props$accessToken === void 0 ? '' : _props$accessToken,
+      _props$imageWidth = props.imageWidth,
+      imageWidth = _props$imageWidth === void 0 ? 100 : _props$imageWidth,
+      _props$imageHeight = props.imageHeight,
+      imageHeight = _props$imageHeight === void 0 ? 100 : _props$imageHeight,
+      _props$nos = props.nos,
+      nos = _props$nos === void 0 ? 12 : _props$nos,
+      _props$showOptions = props.showOptions,
+      showOptions = _props$showOptions === void 0 ? false : _props$showOptions,
+      _props$columns = props.columns,
+      columns = _props$columns === void 0 ? 4 : _props$columns;
 
   var _useState = useState(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -70,7 +85,12 @@ var InstagramStreamer = function InstagramStreamer(props) {
   } else if (!isLoaded) {
     return /*#__PURE__*/React.createElement("div", null, "Loading...");
   } else {
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+    var Grid = makeResponsive(measureItems(CSSGrid), {
+      maxWidth: imageWidth * columns
+    });
+    return /*#__PURE__*/React.createElement("div", {
+      className: "photo-container"
+    }, showOptions && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
       href: "#",
       className: "float-fullscreen",
       onClick: handle.enter
@@ -84,32 +104,38 @@ var InstagramStreamer = function InstagramStreamer(props) {
     }, /*#__PURE__*/React.createElement("img", {
       src: img,
       alt: "info"
-    })), /*#__PURE__*/React.createElement(FullScreen, {
+    }))), /*#__PURE__*/React.createElement(FullScreen, {
       handle: handle
-    }, /*#__PURE__*/React.createElement(CSSGrid, {
-      component: "ul",
-      columns: 5,
-      columnWidth: 150,
-      gutterWidth: 130,
-      gutterHeight: 40,
-      layout: layout.pinterest,
-      duration: 3000,
+    }, /*#__PURE__*/React.createElement(Grid, {
+      component: "div",
+      columns: columns,
+      columnWidth: imageWidth,
+      gutterHeight: -50,
+      layout: layout.simple,
+      duration: 1000,
       easing: "ease-out"
-    }, items.map(function (item) {
-      return /*#__PURE__*/React.createElement("li", {
-        key: item.id,
-        itemHeight: 250
+    }, items.slice(0, nos).map(function (item) {
+      return /*#__PURE__*/React.createElement("div", {
+        itemHeight: 200
       }, /*#__PURE__*/React.createElement("img", {
         src: item.media_url,
         alt: "",
-        height: "320"
+        style: {
+          height: imageHeight + 'px',
+          'max-width': imageWidth + 'px'
+        }
       }));
     }))));
   }
 };
 
 InstagramStreamer.propTypes = {
-  accessToken: string
+  accessToken: string,
+  nos: number,
+  imageHeight: number,
+  imageWidth: number,
+  showOptions: bool,
+  columns: bool
 };
 
 var returnLibrary = function returnLibrary() {
