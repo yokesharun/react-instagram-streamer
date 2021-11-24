@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { string, number, bool } from 'prop-types';
 import { makeResponsive, measureItems, CSSGrid, layout } from 'react-stonecutter';
 import _ from 'lodash';
-import { useFullScreenHandle, FullScreen } from 'react-full-screen';
-
-const img$1 = require('./full-screen.png');
 
 const img = require('./info.png');
 
@@ -47,7 +44,6 @@ var InstagramStreamer = function InstagramStreamer(props) {
     return setItems(_.shuffle(items));
   };
 
-  var handle = useFullScreenHandle();
   useEffect(function () {
     if (accessToken !== '') {
       fetch("https://graph.instagram.com/me/media?fields=media_url&access_token=" + accessToken).then(function (res) {
@@ -91,22 +87,13 @@ var InstagramStreamer = function InstagramStreamer(props) {
     return /*#__PURE__*/React.createElement("div", {
       className: "photo-container"
     }, showOptions && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      className: "float-fullscreen",
-      onClick: handle.enter
-    }, /*#__PURE__*/React.createElement("img", {
-      src: img$1,
-      alt: "fullscreen"
-    })), /*#__PURE__*/React.createElement("a", {
-      href: "#",
+      href: "https://github.com/yokesharun/react-instagram-streamer",
       className: "float-info",
       target: "_blank"
     }, /*#__PURE__*/React.createElement("img", {
       src: img,
       alt: "info"
-    }))), /*#__PURE__*/React.createElement(FullScreen, {
-      handle: handle
-    }, /*#__PURE__*/React.createElement(Grid, {
+    }))), /*#__PURE__*/React.createElement(Grid, {
       component: "div",
       columns: columns,
       columnWidth: imageWidth,
@@ -125,7 +112,7 @@ var InstagramStreamer = function InstagramStreamer(props) {
           'max-width': imageWidth + 'px'
         }
       }));
-    }))));
+    })));
   }
 };
 

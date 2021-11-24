@@ -5,15 +5,12 @@ var React = require('react');
 var propTypes = require('prop-types');
 var reactStonecutter = require('react-stonecutter');
 var _ = require('lodash');
-var reactFullScreen = require('react-full-screen');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var ___default = /*#__PURE__*/_interopDefaultLegacy(_);
-
-const img$1 = require('./full-screen.png');
 
 const img = require('./info.png');
 
@@ -55,7 +52,6 @@ var InstagramStreamer = function InstagramStreamer(props) {
     return setItems(___default["default"].shuffle(items));
   };
 
-  var handle = reactFullScreen.useFullScreenHandle();
   React.useEffect(function () {
     if (accessToken !== '') {
       fetch("https://graph.instagram.com/me/media?fields=media_url&access_token=" + accessToken).then(function (res) {
@@ -99,22 +95,13 @@ var InstagramStreamer = function InstagramStreamer(props) {
     return /*#__PURE__*/React__default["default"].createElement("div", {
       className: "photo-container"
     }, showOptions && /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement("a", {
-      href: "#",
-      className: "float-fullscreen",
-      onClick: handle.enter
-    }, /*#__PURE__*/React__default["default"].createElement("img", {
-      src: img$1,
-      alt: "fullscreen"
-    })), /*#__PURE__*/React__default["default"].createElement("a", {
-      href: "#",
+      href: "https://github.com/yokesharun/react-instagram-streamer",
       className: "float-info",
       target: "_blank"
     }, /*#__PURE__*/React__default["default"].createElement("img", {
       src: img,
       alt: "info"
-    }))), /*#__PURE__*/React__default["default"].createElement(reactFullScreen.FullScreen, {
-      handle: handle
-    }, /*#__PURE__*/React__default["default"].createElement(Grid, {
+    }))), /*#__PURE__*/React__default["default"].createElement(Grid, {
       component: "div",
       columns: columns,
       columnWidth: imageWidth,
@@ -133,7 +120,7 @@ var InstagramStreamer = function InstagramStreamer(props) {
           'max-width': imageWidth + 'px'
         }
       }));
-    }))));
+    })));
   }
 };
 

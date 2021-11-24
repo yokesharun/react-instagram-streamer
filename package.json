@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "react-full-screen": "^1.1.0",
     "react-lodash": "^0.1.2",
     "react-stonecutter": "^0.3.10"
   }

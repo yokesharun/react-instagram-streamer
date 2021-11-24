@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { string, number, bool } from 'prop-types';
 import { CSSGrid, layout, measureItems, makeResponsive } from 'react-stonecutter';
 import _ from "lodash";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import fullscreen from './img/full-screen.png';
 import info from './img/info.png';
 import './index.css';
 
@@ -21,7 +19,6 @@ const InstagramStreamer = (props) => {
   const [items, setItems] = useState([]);
 
   const randomize = () => setItems(_.shuffle(items));
-  const handle = useFullScreenHandle();
 
   useEffect(() => {
     if (accessToken !== '') {
@@ -70,15 +67,11 @@ const InstagramStreamer = (props) => {
       <div className="photo-container">
         {showOptions &&
           <>
-            <a href="#" className="float-fullscreen" onClick={handle.enter}>
-              <img src={fullscreen} alt="fullscreen" />
-            </a>
-            <a href="#" className="float-info" target="_blank">
+            <a href="https://github.com/yokesharun/react-instagram-streamer" className="float-info" target="_blank">
               <img src={info} alt="info" />
             </a>
           </>
         }
-        <FullScreen handle={handle}>
           <Grid
             component="div"
             columns={columns}
@@ -95,7 +88,6 @@ const InstagramStreamer = (props) => {
               </div>
             ))}
           </Grid>
-        </FullScreen>
       </div>
     );
   }

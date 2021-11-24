@@ -1,16 +1,14 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@babel/runtime/helpers/slicedToArray'), require('react'), require('prop-types'), require('react-stonecutter'), require('lodash'), require('react-full-screen')) :
-	typeof define === 'function' && define.amd ? define(['@babel/runtime/helpers/slicedToArray', 'react', 'prop-types', 'react-stonecutter', 'lodash', 'react-full-screen'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["react-instagram-streamer"] = factory(global._slicedToArray, global.React, global.propTypes, global.reactStonecutter, global._, global.reactFullScreen));
-})(this, (function (_slicedToArray, React, propTypes, reactStonecutter, _, reactFullScreen) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@babel/runtime/helpers/slicedToArray'), require('react'), require('prop-types'), require('react-stonecutter'), require('lodash')) :
+	typeof define === 'function' && define.amd ? define(['@babel/runtime/helpers/slicedToArray', 'react', 'prop-types', 'react-stonecutter', 'lodash'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["react-instagram-streamer"] = factory(global._slicedToArray, global.React, global.propTypes, global.reactStonecutter, global._));
+})(this, (function (_slicedToArray, React, propTypes, reactStonecutter, _) { 'use strict';
 
 	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 	var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
 	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 	var ___default = /*#__PURE__*/_interopDefaultLegacy(_);
-
-	const img$1 = require('./full-screen.png');
 
 	const img = require('./info.png');
 
@@ -52,7 +50,6 @@
 	    return setItems(___default["default"].shuffle(items));
 	  };
 
-	  var handle = reactFullScreen.useFullScreenHandle();
 	  React.useEffect(function () {
 	    if (accessToken !== '') {
 	      fetch("https://graph.instagram.com/me/media?fields=media_url&access_token=" + accessToken).then(function (res) {
@@ -96,22 +93,13 @@
 	    return /*#__PURE__*/React__default["default"].createElement("div", {
 	      className: "photo-container"
 	    }, showOptions && /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement("a", {
-	      href: "#",
-	      className: "float-fullscreen",
-	      onClick: handle.enter
-	    }, /*#__PURE__*/React__default["default"].createElement("img", {
-	      src: img$1,
-	      alt: "fullscreen"
-	    })), /*#__PURE__*/React__default["default"].createElement("a", {
-	      href: "#",
+	      href: "https://github.com/yokesharun/react-instagram-streamer",
 	      className: "float-info",
 	      target: "_blank"
 	    }, /*#__PURE__*/React__default["default"].createElement("img", {
 	      src: img,
 	      alt: "info"
-	    }))), /*#__PURE__*/React__default["default"].createElement(reactFullScreen.FullScreen, {
-	      handle: handle
-	    }, /*#__PURE__*/React__default["default"].createElement(Grid, {
+	    }))), /*#__PURE__*/React__default["default"].createElement(Grid, {
 	      component: "div",
 	      columns: columns,
 	      columnWidth: imageWidth,
@@ -130,7 +118,7 @@
 	          'max-width': imageWidth + 'px'
 	        }
 	      }));
-	    }))));
+	    })));
 	  }
 	};
 
