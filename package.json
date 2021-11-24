@@ -1,6 +1,6 @@
 {
   "name": "react-instagram-streamer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This will help to stream instagram photos in your laptops on special occasions. Developed as a react package.",
   "main": "dist/index.cjs.js",
   "homepage": "https://github.com/yokesharun/react-instagram-streamer",
