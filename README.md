@@ -42,8 +42,6 @@ import {InstagramStreamer} from 'react-instagram-streamer';
 ## Props
 
 - `accessToken` - to pass the instagram access token.
-- `imageWidth` - it controls, width of the image to be displayed. Accepts Numerics.
-- `imageHeight` - it controls, height of the image to be displayed. Accepts Numerics.
 - `nos` - it controls, number of the images to be displayed. Accepts Numerics.
 
 ## Preview

@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { string, number, bool } from 'prop-types';
-import { CSSGrid, layout, measureItems, makeResponsive } from 'react-stonecutter';
+import React, { useState, useEffect } from "react";
+import { string, number, bool } from "prop-types";
 import _ from "lodash";
-import info from './img/info.png';
-import './index.css';
+import info from "./img/info.png";
+import "./index.css";
 
 const InstagramStreamer = (props) => {
-  const {
-    accessToken = '',
-    imageWidth = 100,
-    imageHeight = 100,
-    nos = 12,
-    showOptions = false,
-    columns = 4
-  } = props;
+  const { accessToken = "", nos = 12, showOptions = false } = props;
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [items, setItems] = useState([]);
@@ -21,16 +13,19 @@ const InstagramStreamer = (props) => {
   const randomize = () => setItems(_.shuffle(items));
 
   useEffect(() => {
-    if (accessToken !== '') {
-      fetch("https://graph.instagram.com/me/media?fields=media_url&access_token=" + accessToken)
-        .then(res => res.json())
+    if (accessToken !== "") {
+      fetch(
+        "https://graph.instagram.com/me/media?fields=media_url&access_token=" +
+          accessToken
+      )
+        .then((res) => res.json())
         .then(
           (result) => {
             const image_urls = result.data.map((i) => {
               return {
                 id: i.id,
-                media_url: i.media_url
-              }
+                media_url: i.media_url,
+              };
             });
             setItems(image_urls);
             setIsLoaded(true);
@@ -39,9 +34,9 @@ const InstagramStreamer = (props) => {
             setIsLoaded(true);
             setError(error);
           }
-        )
+        );
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,56 +45,42 @@ const InstagramStreamer = (props) => {
       }
     }, 10000);
     return () => clearInterval(interval);
-  }, [isLoaded, error, randomize])
+  }, [isLoaded, error, randomize]);
 
-  if (accessToken === '') {
+  if (accessToken === "") {
     return <div>Error: Invalid access_token</div>;
   } else if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    const Grid = makeResponsive(measureItems(CSSGrid), {
-      maxWidth: imageWidth*columns
-    })
-
     return (
       <div className="photo-container">
-        {showOptions &&
+        {showOptions && (
           <>
-            <a href="https://github.com/yokesharun/react-instagram-streamer" className="float-info" target="_blank">
+            <a
+              href="https://github.com/yokesharun/react-instagram-streamer"
+              className="float-info"
+              target="_blank"
+            >
               <img src={info} alt="info" />
             </a>
           </>
-        }
-          <Grid
-            component="div"
-            columns={columns}
-            columnWidth={imageWidth}
-            gutterHeight={-50}
-            layout={layout.simple}
-            duration={1000}
-            easing="ease-out"
-            
-          >
-            {items.slice(0, nos).map(item => (
-              <div itemHeight={200}>
-                <img src={item.media_url} alt="" style={{height: imageHeight+'px', 'max-width': imageWidth + 'px'}}/>
-              </div>
-            ))}
-          </Grid>
+        )}
+        <div className="gallery">
+          {items.slice(0, nos).map((item) => (
+            <img src={item.media_url} alt="" />
+          ))}
+        </div>
       </div>
     );
   }
-}
+};
 
 InstagramStreamer.propTypes = {
   accessToken: string,
   nos: number,
-  imageHeight: number,
-  imageWidth: number,
   showOptions: bool,
-  columns: bool
-}
+};
 
 export default InstagramStreamer;
