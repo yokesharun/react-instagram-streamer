@@ -15,7 +15,7 @@ const InstagramStreamer = (props) => {
   useEffect(() => {
     if (accessToken !== "") {
       fetch(
-        "https://graph.instagram.com/me/media?fields=media_url&access_token=" +
+        "https://graph.instagram.com/me/media?fields=id,media_url&access_token=" +
           accessToken
       )
         .then((res) => res.json())
