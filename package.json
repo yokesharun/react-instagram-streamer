@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "react-lodash": "^0.1.2"
+    "react-lodash": "^0.1.2",
+    "react-photo-gallery": "^8.0.0"
   }
 }

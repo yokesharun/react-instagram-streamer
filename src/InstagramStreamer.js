@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { string, number, bool } from "prop-types";
+import Gallery from "react-photo-gallery";
 import _ from "lodash";
 import "./index.css";
 
@@ -23,7 +24,9 @@ const InstagramStreamer = (props) => {
             const image_urls = result.data.map((i) => {
               return {
                 id: i.id,
-                media_url: i.media_url,
+                src: i.media_url,
+                width: Math.floor(Math.random() * (4 - 3 + 1)) + 3,
+                height: 4
               };
             });
             setItems(image_urls);
@@ -53,12 +56,11 @@ const InstagramStreamer = (props) => {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
+    const BasicRows = () => <Gallery photos={items.slice(0, nos)} />;
     return (
       <div className="photo-container">
         <div className="gallery">
-          {items.slice(0, nos).map((item) => (
-            <img src={item.media_url} alt="" />
-          ))}
+          <BasicRows />
         </div>
       </div>
     );

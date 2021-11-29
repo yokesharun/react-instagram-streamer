@@ -1,18 +1,19 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@babel/runtime/helpers/slicedToArray'), require('react'), require('prop-types'), require('lodash')) :
-  typeof define === 'function' && define.amd ? define(['@babel/runtime/helpers/slicedToArray', 'react', 'prop-types', 'lodash'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["react-instagram-streamer"] = factory(global._slicedToArray, global.React, global.propTypes, global._));
-})(this, (function (_slicedToArray, React, propTypes, _) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@babel/runtime/helpers/slicedToArray'), require('react'), require('prop-types'), require('react-photo-gallery'), require('lodash')) :
+  typeof define === 'function' && define.amd ? define(['@babel/runtime/helpers/slicedToArray', 'react', 'prop-types', 'react-photo-gallery', 'lodash'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["react-instagram-streamer"] = factory(global._slicedToArray, global.React, global.propTypes, global.Gallery, global._));
+})(this, (function (_slicedToArray, React, propTypes, Gallery, _) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
   var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+  var Gallery__default = /*#__PURE__*/_interopDefaultLegacy(Gallery);
   var ___default = /*#__PURE__*/_interopDefaultLegacy(_);
 
   var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
 
-  var css = ".photo-container {\n  width: inherit;\n}\n\n.gallery {\n  display: grid;\n  grid-gap: 10px;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n}\n\n.gallery img {\n  width: 100%;\n  -webkit-user-drag: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n}\n";
+  var css = ".photo-container {\n  width: inherit;\n}\n\n.gallery {\n  display: grid;\n  grid-gap: 10px;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n}\n\n.gallery img {\n  -webkit-user-drag: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n}\n";
   n(css,{});
 
   var InstagramStreamer = function InstagramStreamer(props) {
@@ -48,7 +49,9 @@
           var image_urls = result.data.map(function (i) {
             return {
               id: i.id,
-              media_url: i.media_url
+              src: i.media_url,
+              width: Math.floor(Math.random() * (4 - 3 + 1)) + 3,
+              height: 4
             };
           });
           setItems(image_urls);
@@ -77,16 +80,17 @@
     } else if (!isLoaded) {
       return /*#__PURE__*/React__default["default"].createElement("div", null, "Loading...");
     } else {
+      var BasicRows = function BasicRows() {
+        return /*#__PURE__*/React__default["default"].createElement(Gallery__default["default"], {
+          photos: items.slice(0, nos)
+        });
+      };
+
       return /*#__PURE__*/React__default["default"].createElement("div", {
         className: "photo-container"
       }, /*#__PURE__*/React__default["default"].createElement("div", {
         className: "gallery"
-      }, items.slice(0, nos).map(function (item) {
-        return /*#__PURE__*/React__default["default"].createElement("img", {
-          src: item.media_url,
-          alt: ""
-        });
-      })));
+      }, /*#__PURE__*/React__default["default"].createElement(BasicRows, null)));
     }
   };
 
