@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { string, number, bool } from "prop-types";
 import _ from "lodash";
-import info from "./img/info.png";
 import "./index.css";
 
 const InstagramStreamer = (props) => {
-  const { accessToken = "", nos = 12, showOptions = false } = props;
+  const { accessToken = "", nos = 12 } = props;
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [items, setItems] = useState([]);
@@ -56,17 +55,6 @@ const InstagramStreamer = (props) => {
   } else {
     return (
       <div className="photo-container">
-        {showOptions && (
-          <>
-            <a
-              href="https://github.com/yokesharun/react-instagram-streamer"
-              className="float-info"
-              target="_blank"
-            >
-              <img src={info} alt="info" />
-            </a>
-          </>
-        )}
         <div className="gallery">
           {items.slice(0, nos).map((item) => (
             <img src={item.media_url} alt="" />
@@ -80,7 +68,6 @@ const InstagramStreamer = (props) => {
 InstagramStreamer.propTypes = {
   accessToken: string,
   nos: number,
-  showOptions: bool,
 };
 
 export default InstagramStreamer;
