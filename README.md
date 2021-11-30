@@ -1,7 +1,6 @@
 ## React Instagram Streamer
 
-
-![Version](https://img.shields.io/npm/v/react-instagram-streamer)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/yokesharun/react-instagram-streamer)
 ![Downloads](https://img.shields.io/npm/dt/react-instagram-streamer)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
