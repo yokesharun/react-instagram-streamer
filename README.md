@@ -45,7 +45,7 @@ import {InstagramStreamer} from 'react-instagram-streamer';
 
 ## Preview
 
-![Screenshot 2021-11-18 at 10 47 07 AM-min](https://user-images.githubusercontent.com/12830078/142357139-10643351-1985-4676-a1cb-763ddd743031.png)
+![Screenshot 2021-11-30 at 11 30 59 PM-min](https://user-images.githubusercontent.com/12830078/144103223-681da47f-41c4-4463-83fd-d72d13fe36b6.png)
 
 
 ## License
