@@ -6,14 +6,13 @@ import _ from 'lodash';
 
 var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
 
-var css = ".photo-container {\n  width: inherit;\n}\n\n.gallery {\n  display: grid;\n  grid-gap: 10px;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n}\n\n.gallery img {\n  -webkit-user-drag: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n}\n";
+var css = ".photo-container {\n  width: inherit;\n}\n\n.gallery {\n  display: grid;\n  grid-gap: 10px;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n}\n\n.gallery img {\n  -webkit-user-drag: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  object-fit: cover;\n}\n";
 n(css,{});
 
 var InstagramStreamer = function InstagramStreamer(props) {
   var _props$accessToken = props.accessToken,
       accessToken = _props$accessToken === void 0 ? "" : _props$accessToken,
-      _props$nos = props.nos,
-      nos = _props$nos === void 0 ? 12 : _props$nos;
+      nos = props.nos;
 
   var _useState = useState(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -43,8 +42,8 @@ var InstagramStreamer = function InstagramStreamer(props) {
           return {
             id: i.id,
             src: i.media_url,
-            width: Math.floor(Math.random() * (4 - 3 + 1)) + 3,
-            height: 4
+            width: Math.floor(Math.random() * (5 - 3 + 1)) + 3,
+            height: Math.floor(Math.random() * (4 - 3 + 1)) + 3
           };
         });
         setItems(image_urls);
@@ -88,8 +87,11 @@ var InstagramStreamer = function InstagramStreamer(props) {
 };
 
 InstagramStreamer.propTypes = {
-  accessToken: string,
+  accessToken: string.isRequired,
   nos: number
+};
+InstagramStreamer.defaultProps = {
+  nos: 9
 };
 
 var returnLibrary = function returnLibrary() {

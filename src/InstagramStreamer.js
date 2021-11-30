@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { string, number, bool } from "prop-types";
+import { string, number } from "prop-types";
 import Gallery from "react-photo-gallery";
 import _ from "lodash";
-import "./index.css";
+import './index.css';
 
 const InstagramStreamer = (props) => {
-  const { accessToken = "", nos = 12 } = props;
+  const { accessToken = "", nos } = props;
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [items, setItems] = useState([]);
@@ -15,8 +15,8 @@ const InstagramStreamer = (props) => {
   useEffect(() => {
     if (accessToken !== "") {
       fetch(
-        "https://graph.instagram.com/me/media?fields=id,media_url&access_token=" +
-          accessToken
+        "https://graph.instagram.com/me/media?fields=id,media_url&access_token="
+          + accessToken
       )
         .then((res) => res.json())
         .then(
@@ -25,8 +25,8 @@ const InstagramStreamer = (props) => {
               return {
                 id: i.id,
                 src: i.media_url,
-                width: Math.floor(Math.random() * (4 - 3 + 1)) + 3,
-                height: 4
+                width: Math.floor(Math.random() * (5 - 3 + 1)) + 3,
+                height: Math.floor(Math.random() * (4 - 3 + 1)) + 3
               };
             });
             setItems(image_urls);
@@ -68,8 +68,12 @@ const InstagramStreamer = (props) => {
 };
 
 InstagramStreamer.propTypes = {
-  accessToken: string,
+  accessToken: string.isRequired,
   nos: number,
+};
+
+InstagramStreamer.defaultProps = {
+  nos: 9,
 };
 
 export default InstagramStreamer;

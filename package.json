@@ -1,11 +1,12 @@
 {
   "name": "react-instagram-streamer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "This will help to stream instagram photos in your laptops on special occasions. Developed as a react package.",
   "main": "dist/index.cjs.js",
   "homepage": "https://github.com/yokesharun/react-instagram-streamer",
   "scripts": {
     "build": "rollup -c",
+    "lint": "eslint 'src/**/*.js' ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,11 +20,13 @@
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@rollup/plugin-babel": "^5.3.0",
     "autoprefixer": "^10.4.0",
+    "eslint": "^8.3.0",
     "rollup": "^2.60.0",
     "rollup-plugin-image-files": "^1.4.2",
     "rollup-plugin-styles": "^3.14.1"
